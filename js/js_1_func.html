@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -11,8 +11,98 @@
     <p>My first paragraph.</p>
     <button onclick="myFunction()">click here</button>
     <script>
+        var carname="糟糕，文档消失了..."
         function myFunction() {
-            document.write("糟糕，文档消失了.");
+            document.write(carname);
+        }
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>js_1_func</title>
+</head>
+
+<body>
+    <p>点击这个按钮，来调用带参数的函数</p>
+    <button type="button" onclick="myFunction('Bill Gates','CEO')">click here</button>
+    <button onclick="myFunction('Harry Potter','Wizard')">点击这里</button>
+    <button onclick="myFunction('Bob','Builder')">点击这里</button>
+    <script>
+        function myFunction(name, job) {
+            alert("Welcom " + name + " ,the " + job)
+        }
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>js_1_func</title>
+</head>
+
+<body>
+    <p>本例调用的函数会执行一个计算,然后返回结果:</p>
+    <p id="demo"></p>
+    <script type="text/javascript">
+        function myFunction(a, b) {
+            return a * b;
+        }
+        document.getElementById('demo').innerHTML = myFunction(3, 2);
+    </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>js_1_func</title>
+</head>
+
+<body>
+    <p>点击下面的按钮来显示今天是周几:</p>
+    <button type="button" onclick="myFunction()">点击这里</button>
+    <p id="demo"></p>
+    <script type="text/javascript">
+        function myFunction() {
+            var x;
+            var d = new Date().getDay();
+            switch (d) {
+                case 0:
+                    x = "Today is Sunday";
+                    break;
+                case 1:
+                    x = "Today is Monday";
+                    break;
+                case 2:
+                    x = "Today is Tuesday";
+                    break;
+                case 3:
+                    x = "Today is Wednesday";
+                    break;
+                case 4:
+                    x = "Today is Thursday";
+                    break;
+                case 5:
+                    x = "Today is Friday";
+                    break;
+                case 6:
+                    x = "Today is Saturday";
+                    break;
+            }
+            document.getElementById('demo').innerHTML = x;
         }
     </script>
 </body>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>js_1_var</title>
+</head>
+
+<body>
+    <h1>My first page.</h1>
+    <p>javascript var</p>
+    <script>
+        var x
+        x = 6;
+        document.write(x + "<br>");
+        x = "Bill";
+        document.write(x + "<br>");
+        x = true;
+        document.write(x + "<br>");
+        x = new Array();
+        x[0] = "Audi";
+        x[1] = "BMW";
+        x[2] = "Volvo";
+        document.write(x + "<br>");
+        x = new Array("Audi", "BMW", "volvo");
+        document.write(x + "<br>");
+        x = ["Audi", "BMW", "volvo"];
+        document.write(x + "<br>");
+        x = {
+            firstname: "Bill",
+            lastname: "Gates",
+            id: 5566
+        };
+        document.write(x.firstname + "<br>");
+        document.write(x.lastname + "<br>");
+        document.write(x.id + "<br>");
+        document.write(x + "<br>");
+        x=null;
+        document.write(x+"<br>");
+    </script>
+</body>
+
+</html>
