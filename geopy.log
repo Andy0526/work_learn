@@ -1,0 +1,187 @@
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 143, in _call_geocoder
+    page = requester(req, timeout=(timeout or self.timeout), **kwargs)
+  File "/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 429, in open
+    response = self._open(req, data)
+  File "/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 447, in _open
+    '_open', req)
+  File "/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 407, in _call_chain
+    result = func(*args)
+  File "/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 1228, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 1201, in do_open
+    r = h.getresponse(buffering=True)
+  File "/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 1136, in getresponse
+    response.begin()
+  File "/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 453, in begin
+    version, status, reason = self._read_status()
+  File "/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 409, in _read_status
+    line = self.fp.readline(_MAXLINE + 1)
+  File "/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/lib/python2.7/socket.py", line 480, in readline
+    data = self._sock.recv(self._rbufsize)
+KeyboardInterrupt
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 163, in _call_geocoder
+    raise GeocoderTimedOut('Service timed out')
+GeocoderTimedOut: Service timed out
+
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 185, in _call_geocoder
+    page = decode_page(page)
+  File "/Library/Python/2.7/site-packages/geopy/util.py", line 67, in decode_page
+    return unicode(page.read(), encoding=encoding)
+UnicodeDecodeError: 'utf8' codec can't decode bytes in position 161-162: invalid continuation byte
+
