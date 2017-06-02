@@ -29,14 +29,19 @@
         x = {
             firstname: "Bill",
             lastname: "Gates",
-            id: x
+            id: [5566, 6677, 7788],
         };
         document.write(x.firstname + "<br>");
         document.write(x.lastname + "<br>");
         document.write(x.id + "<br>");
+        document.write(JSON.stringify(x, null, '\t') + "<br>");
+        x = JSON.stringify({
+            uno: 1,
+            dos: 2
+        }, null, '\t');
         document.write(x + "<br>");
-        x=null;
-        document.write(x+"<br>");
+        x = null;
+        document.write(x + "<br>");
     </script>
 </body>
 
