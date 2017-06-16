@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>js_1_valid_input</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // function validate_required(field, alerttxt) {
+        //     with(field) {
+        //         if (value == null || value == "") {
+        //             alert(alerttxt);
+        //             return false;
+        //         }
+        //     }
+        // }
+        function validate_required(field, alerttxt) {
+            with(field) {
+                apos = value.indexOf("@")
+                dotpos = value.lastIndexOf(".")
+                if (apos < 1 || dotpos - apos < 2) {
+                    alert(alerttxt);
+                    return false
+                } else {
+                    return true
+                }
+            }
+        }
+
+        function validate_form(thisform) {
+            with(thisform) {
+                if (validate_required(email, "Email must be filled out!") == false) {
+                    email.focus();
+                    return false;
+                }
+            }
+        }
+    </script>
+    <form action="alert("Input successfully!!!")" onsubmit="return validate_form(this)" method="post">
+        <!-- Email: <input type="submit" value="Submit"> -->
+        Email: <input type="text" name="email" size="30">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
