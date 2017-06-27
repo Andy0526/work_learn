@@ -185,3 +185,16 @@ ERROR:root:geo_decode error! Traceback (most recent call last):
     return unicode(page.read(), encoding=encoding)
 UnicodeDecodeError: 'utf8' codec can't decode bytes in position 161-162: invalid continuation byte
 
+ERROR:root:geo_decode error! Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/Users/lewsan/workspace/work_learn/geoutil.py", line 68, in decode
+    r = cls.Geolocator.reverse(geo)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/baidu.py", line 127, in reverse
+    self._call_geocoder(url, timeout=timeout)
+  File "/Library/Python/2.7/site-packages/geopy/geocoders/base.py", line 185, in _call_geocoder
+    page = decode_page(page)
+  File "/Library/Python/2.7/site-packages/geopy/util.py", line 67, in decode_page
+    return unicode(page.read(), encoding=encoding)
+UnicodeDecodeError: 'utf8' codec can't decode bytes in position 161-162: invalid continuation byte
+
