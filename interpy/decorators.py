@@ -48,8 +48,40 @@ def additon_func(x):
 
 def additon_func_test():
     additon_func(4)
+    print additon_func.__name__
+
+
+def logit(logfile='out.log'):
+    def logging_decorator(func):
+        @wraps(func)
+        def wrapped_function(*args, **kwargs):
+            log_string = func.__name__ + " was called"
+            print log_string
+            with open(logfile, 'a') as f:
+                f.write(log_string + '\n')
+            return func(*args, **kwargs)
+
+        return wrapped_function
+
+    return logging_decorator
+
+
+@logit()
+def myfunc1():
+    pass
+
+
+@logit(logfile='func2.log')
+def myfunc2():
+    pass
+
+
+def logit_test():
+    myfunc1()
+    myfunc2()
 
 
 if __name__ == '__main__':
     my_func_1()
     additon_func_test()
+    logit_test()
