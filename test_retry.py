@@ -81,31 +81,56 @@ from retrying import retry
 
 
 
-def retry_on_result(res):
-    return res != 8
+# def retry_on_result(res):
+#     return res != 8
+#
+#
+# def retry_on_excep(exception):
+#     print "retry_on_excep"
+#     if isinstance(exception, RetryError):
+#         return True
+#     return False
+#
+#
+# @retry(retry_on_exception=retry_on_excep)
+# def func(n):
+#     @retry(stop_max_attempt_number=5, retry_on_result=retry_on_result)
+#     def _func():
+#         return random.randint(0, n)
+#
+#     return _func()
+
+
+# _retry=retry
+#
+# def myretry():
+#     try:
+#         _retry()
+#     except:
+#         pass
+
+
+class MyException(Exception):
+    pass
+
+
+idx = 0
 
 
 def retry_on_excep(exception):
-    print "retry_on_excep"
-    if isinstance(exception, RetryError):
-        return True
-    return False
+    global idx
+    idx += 1
+    print idx
+    return isinstance(exception, MyException)
 
 
-@retry(retry_on_exception=retry_on_excep)
+@retry(stop_max_attempt_number=3, retry_on_exception=retry_on_excep)
 def func(n):
-    @retry(stop_max_attempt_number=5, retry_on_result=retry_on_result)
-    def _func():
-        return random.randint(0, n)
+    if n % 2:
+        raise MyException()
+    else:
+        print n
 
-    return _func()
 
-
-_retry=retry
-
-def myretry():
-    try:
-        _retry()
-    except:
-        pass
-@myretry
+func(2)
+func(1)
