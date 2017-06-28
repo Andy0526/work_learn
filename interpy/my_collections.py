@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # author:lewsan
-
+import inspect
 from collections import defaultdict, Counter, deque, namedtuple
-
 
 
 def _defaultdict():
@@ -52,6 +51,7 @@ def _namedtuple():
     print perry
     perry._replace(age=42)
     print perry
+    print inspect.getmembers(perry)
 
 
 if __name__ == '__main__':
