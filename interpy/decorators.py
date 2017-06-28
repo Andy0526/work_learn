@@ -81,7 +81,36 @@ def logit_test():
     myfunc2()
 
 
+import traceback
+
+
+class logit_cls(object):
+    def __init__(self, logfile='out.log'):
+        self.logfile = logfile
+
+    def __call__(self, func):
+        @wraps(func)
+        def wrapped_function(*args, **kwargs):
+            log_string = func.__name__ + ' was called...'
+            print log_string
+            traceback.print_stack()
+            with open(self.logfile, 'a') as f:
+                f.write(log_string + '\n')
+            self.notify()
+            return func(*args, **kwargs)
+
+        return wrapped_function
+
+    def notify(self):
+        pass
+
+
+@logit_cls()
+def my_func1():
+    pass
+
 if __name__ == '__main__':
-    my_func_1()
-    additon_func_test()
-    logit_test()
+    # my_func_1()
+    # additon_func_test()
+    # logit_test()
+    my_func1()
