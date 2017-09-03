@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 # author:lewsan
 
-import test_a
+def func():
+    print 'asas'
+    for i in range(10):
+        yield i
 
-print test_a.size
