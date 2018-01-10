@@ -102,7 +102,16 @@ def get_all_shard_data():
     return shard_datas
 
 
-def sync_block_relation(block_res, contact_datas, shard_data):
+def sync_user_relations():
+    block_datas = get_all_block_data()
+    contact_datas = get_all_contact_data()
+    contact_req_datas = get_all_contact_req_data()
+    shard_datas = get_all_shard_data()
+    existed_relations = set()
+    sync_block_relation(block_datas, contact_datas, shard_datas, existed_relations)
+
+
+def sync_block_relation(block_res, contact_datas, shard_data, existed_relations):
     logging.info('sync_user_relation__ sync_block start...')
     begin = time.time()
     block_uids = set()
@@ -124,23 +133,27 @@ def sync_block_relation(block_res, contact_datas, shard_data):
         else:
             block_uids_set.add(block_key)
             block_lst.append(block_value)
-    sync_frd_inter_block(inter_block_lst, columns, shard_data)
-    sync_frd_block(block_lst, columns, shard_data)
+    frd_lst = [(res['uid'], res['tuid'] for res in contact_datas)]
+    sync_frd_inter_block(inter_block_lst, columns, frd_lst, shard_data, existed_relations)
+    sync_frd_block(block_lst, columns, frd_lst, shard_data, existed_relations)
     logging.info('sync_user_relation__ sync_block end, runtime:{}'.format(time.time() - begin))
 
 
-def sync_frd_inter_block(inter_block_lst, columns, shard_data, frd_lst):
+def sync_frd_inter_block(inter_block_lst, columns, frd_lst, shard_data, existed_relations):
     pieces = split_list(inter_block_lst)
     for piece in pieces:
         frd_bind_placeholds = {}
         frd_values = {}
         stranger_bind_placeholds = {}
         stranger_values = {}
+        insert_uids = []
         for inter_block in piece:
             uid = inter_block['uid']
             tuid = inter_block['tuid']
             shard_id = shard_data.get(uid, 0)
             if not shard_id:
+                continue
+            if uid == tuid:
                 continue
             if (uid, tuid) in frd_lst:
                 frd_shard_placeholds = frd_bind_placeholds.setdefault(shard_id, [])
@@ -154,7 +167,7 @@ def sync_frd_inter_block(inter_block_lst, columns, shard_data, frd_lst):
                 inter_block['relation_type'] = USER_RELATION_INFO.STRANGER_INTER_BLOCK
                 stranger_shard_values.extend([inter_block[s_col] for s_col in columns])
                 stranger_shard_placeholds.append('(' + ','.join(['%s' for _ in columns]) + ')')
-
+            insert_uids.append((uid, tuid))
         inter_block_data = [{'bind_placeholds': frd_bind_placeholds, 'values': frd_values},
                             {'bind_placeholds': stranger_bind_placeholds, 'values': stranger_values}, ]
         for data in inter_block_data:
@@ -167,9 +180,10 @@ def sync_frd_inter_block(inter_block_lst, columns, shard_data, frd_lst):
                 sql = sql % tuple(_values)
                 shard.execute(sql)
                 shard.fetchall()
+        existed_relations.update(insert_uids)
 
 
-def sync_frd_block(block_lst, columns, shard_data, frd_lst):
+def sync_frd_block(block_lst, columns, frd_lst, shard_data, existed_relations):
     pieces = split_list(block_lst)
     for piece in pieces:
         frd_block_bind_placeholds = {}
@@ -181,12 +195,19 @@ def sync_frd_block(block_lst, columns, shard_data, frd_lst):
         stranger_blocked_bind_placeholds = {}
         stranger_blocked_values = {}
 
+        insert_uids = []
         for block in piece:
             uid = block['uid']
             tuid = block['tuid']
             block_shard_id = shard_data.get(uid, 0)
             blocked_shard_id = shard_data.get(tuid, 0)
             if not block_shard_id or not blocked_shard_id:
+                continue
+            if (uid, tuid) in insert_uids:
+                continue
+            if (tuid, uid) in insert_uids:
+                continue
+            if uid == tuid:
                 continue
 
             block_shard_values = None
@@ -210,7 +231,8 @@ def sync_frd_block(block_lst, columns, shard_data, frd_lst):
                 blocked_shard_placeholds = stranger_blocked_bind_placeholds.setdefault(blocked_shard_id, [])
                 blocked_shard_values = stranger_blocked_values.setdefault(blocked_shard_id, [])
                 blocked_relation_type = USER_RELATION_INFO.STRANGER_BLOCKED
-
+            insert_uids.append((uid, tuid))
+            insert_uids.append((tuid, uid))
             block['relation_type'] = block_relation_type
             block_shard_values.extend([block[s_col] for s_col in columns])
             block_shard_placeholds.append('(' + ','.join(['%s' for _ in columns]) + ')')
@@ -234,6 +256,7 @@ def sync_frd_block(block_lst, columns, shard_data, frd_lst):
                 sql = sql % tuple(_values)
                 shard.execute(sql)
                 shard.fetchall()
+        existed_relations.update(insert_uids)
 
 
 def sync_frds_data(frds_data, shard_data, existed_relations):
@@ -244,22 +267,22 @@ def sync_frds_data(frds_data, shard_data, existed_relations):
     idx = 0
     for piece in pieces:
         _begin = time.time()
-
-        uid_lst = []
-        tuid_lst = []
-        for friend in piece:
-            uid_lst.append(friend['uid'])
-            tuid_lst.append(friend['tuid'])
         shard_bind_placeholds = {}
         shard_values = {}
+        insert_uids = []
         for _data in piece:
             uid = _data['uid']
             tuid = _data['tuid']
             if (uid, tuid) in existed_relations:
                 continue
+            if (uid, tuid) in insert_uids:
+                continue
+            if uid == tuid:
+                continue
             shard_id = shard_data.get(uid, 0)
             if not shard_id:
                 continue
+            insert_uids.append((uid, tuid))
             _bind_place_holds = shard_bind_placeholds.setdefault(shard_id, [])
             _values = shard_values.setdefault(shard_id, [])
             relation_type = USER_RELATION_INFO.FRIEND
@@ -277,11 +300,12 @@ def sync_frds_data(frds_data, shard_data, existed_relations):
             shard.fetchall()
         logging.info('sync_user_relation__ sync_frds {}, frds:{} {}, runtime:{}'.format(
             idx, len(piece), piece[:10], time.time() - _begin))
+        existed_relations.update(insert_uids)
 
     logging.info('sync_user_relation__ sync_frds end, runtime:{}'.format(time.time() - begin))
 
 
-def sync_contact_req_data(contact_req, existed_relations, shard_data):
+def sync_contact_req_data(contact_req, shard_data, existed_relations):
     columns = ['uid', 'tuid', 'relation_type', 'update_time', ]
     begin = time.time()
     logging.info('sync_user_relation__ sync_contact_req start...')
@@ -294,6 +318,7 @@ def sync_contact_req_data(contact_req, existed_relations, shard_data):
         like_values = {}
         liked_bind_placeholds = {}
         liked_values = {}
+        insert_uids = []
         for each_data in piece:
             uid = each_data['uid']
             tuid = each_data['tuid']
@@ -301,12 +326,18 @@ def sync_contact_req_data(contact_req, existed_relations, shard_data):
                 continue
             if uid == tuid:
                 continue
+            if (uid, tuid) in insert_uids:
+                continue
+            if (tuid, uid) in insert_uids:
+                continue
             like_shard_id = shard_data.get(uid, 0)
             if not like_shard_id:
                 continue
             liked_shard_id = shard_data.get(tuid, 0)
             if not liked_shard_id:
                 continue
+            insert_uids.append((uid, tuid))
+            insert_uids.append((tuid, uid))
             each_data['relation_type'] = USER_RELATION_INFO.LIKE
             like_shard_placeholds = like_bind_placeholds.setdefault(like_shard_id, [])
             like_shard_values = like_values.setdefault(like_shard_id, [])
@@ -335,4 +366,5 @@ def sync_contact_req_data(contact_req, existed_relations, shard_data):
         logging.info('sync_user_relation__ sync_contact_req {},  reqs:{} {}, runtime:{}'.format(
             idx, len(piece), piece[:10], time.time() - _begin))
         idx += 1
+        existed_relations.update(insert_uids)
     logging.info('sync_user_relation__ sync_contact_erq end, runtime:{}'.format(time.time() - begin))
