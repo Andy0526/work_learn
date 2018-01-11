@@ -41,3 +41,42 @@ def split_list(data, page_size=10000):
         page_count = count_all / page_size
     pieces = [data[each * page_size: (each + 1) * page_size] for each in range(page_count)]
     return pieces
+
+
+def get_in_tuple(args):
+    args = list(args)
+    if len(args) == 1:
+        args.append(args[0])
+    return tuple(args)
+
+# from psycopg2.pool import ThreadedConnectionPool, PersistentConnectionPool
+#
+# if TEST:
+#     SHARD_1_POOL = ThreadedConnectionPool(minconn=30,
+#                                           maxconn=100,
+#                                           database='sneaky',
+#                                           user='sneaky',
+#                                           password='77WN88wwc',
+#                                           host='172.16.10.133',
+#                                           )
+#     SHARD_2_POOL = ThreadedConnectionPool(minconn=30,
+#                                           maxconn=100,
+#                                           database='sneaky',
+#                                           user='sneaky',
+#                                           password='77WN88wwc',
+#                                           host='172.16.10.162',
+#                                           )
+#     SHARD_3_POOL = ThreadedConnectionPool(minconn=30,
+#                                           maxconn=100,
+#                                           database='sneaky',
+#                                           user='sneaky',
+#                                           password='77WN88wwc',
+#                                           host='172.16.10.168',
+#                                           )
+#
+#     DB_POOLS = {
+#         1: SHARD_1_POOL,
+#         2: SHARD_2_POOL,
+#         3: SHARD_3_POOL,
+#     }
+#     MASTER = SHARD_1_POOL
