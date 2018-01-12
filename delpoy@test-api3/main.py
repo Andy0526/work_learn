@@ -6,13 +6,10 @@ from test_sync_relation.config import split_list, get_in_tuple
 from test_sync_relation.db_manager import query, _dbManager
 import logging
 import time
-import sys
-
-sys.path.append('..')
 
 thread_pool = ThreadPool(processes=20)
 formats = '[%(asctime)s] [%(filename)s L%(lineno)d] [%(levelname)s] %(message)s'
-logging.basicConfig(level='DEBUG', format=formats,filename='log.txt')
+logging.basicConfig(level='DEBUG', format=formats)
 
 
 def get_block_data(page_size):

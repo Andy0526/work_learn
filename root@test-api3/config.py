@@ -15,10 +15,11 @@ if TEST:
         3: 'dbname=sneaky user=sneaky password=77WN88wwc host=172.16.10.168',
     }
 else:
+    mongo_uri = '192.168.100.2:22000'
     pg_master = 'dbname=sneaky user=sneaky password=77WN88wwc host=192.168.100.1'
     pg_shard = {
-        1: 'dbname=sneaky user=sneaky password=77WN88wwc host=192.168.100.109',
-        2: 'dbname=sneaky user=sneaky password=77WN88wwc host=192.168.100.110',
+        1: 'dbname=sneaky user=sneaky password=77WN88wwc host=192.168.100.1',
+        2: 'dbname=sneaky user=sneaky password=77WN88wwc host=192.168.100.21',
     }
 
 
