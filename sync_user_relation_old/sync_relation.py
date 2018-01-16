@@ -36,7 +36,7 @@ def get_all_block_data():
     begin = time.time()
     logging.info('get_all_block_data start...')
     block_datas = []
-    page_lst = range(3)
+    page_lst = range(100)
     results = thread_pool.map(get_block_data, page_lst)
     logging.info('get_all_block_data end. runtime:{}'.format(time.time() - begin))
     block_uids_lst = []

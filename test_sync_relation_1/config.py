@@ -14,9 +14,9 @@ if TEST:
         3: 'dbname=sneaky user=sneaky password=77WN88wwc host=172.16.10.168',
     }
 else:
-    pg_master = 'dbname=sneaky user=sneaky password=77WN88wwc host=192.168.200.12'
+    pg_master = 'dbname=sneaky user=sneaky password=77WN88wwc host=192.168.200.109'
     pg_shard = {
-        1: 'dbname=sneaky user=sneaky password=77WN88wwc host=192.168.200.12',
+        1: 'dbname=sneaky user=sneaky password=77WN88wwc host=192.168.200.109',
         2: 'dbname=sneaky user=sneaky password=77WN88wwc host=192.168.100.110',
     }
 
